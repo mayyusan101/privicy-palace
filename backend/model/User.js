@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const AccountSchema = {
+const AccountSchema = new Schema({
   type: {
     type: String,
   },
@@ -15,8 +15,11 @@ const AccountSchema = {
   },
   note: {
     type: String,
-  },
-};
+  }
+},{
+  timestamps: true
+}
+);
 
 const userSchema = new Schema({
   name: {
@@ -31,7 +34,7 @@ const userSchema = new Schema({
   token: {
     type: String,
   },
-  Accounts: [AccountSchema],
+  accounts: [AccountSchema],
 },{
     timestamps: true
 });

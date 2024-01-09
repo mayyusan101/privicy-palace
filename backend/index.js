@@ -6,6 +6,8 @@ const dbConnect = require("./config/db");
 colors = require("colors");
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
+const { verifyToken } = require("./middleware/verifyToken")
 
 
 colors.setTheme({
@@ -30,6 +32,7 @@ app.use(cors());
 
 // api routes
 app.use("/api/auth", authRoutes);
+app.use("/api/accounts", verifyToken, userRoutes);
 
 // error handler
 app.use((err, req, res, next) => {
