@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        // added new 4 column grid as new4
+        'box': 'repeat(auto-fit,minmax(300px,400px))'
+        }
+    },
   },
   plugins: [],
 }

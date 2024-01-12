@@ -2,7 +2,7 @@ const User = require("../model/User");
 const bcrypt = require("bcrypt");
 const saltRounds = 10; // the more greater, the more it longs
 const { generateAccessToken } = require("../config/token");
-const { default: mongoose } = require("mongoose");
+
 
 const login = async (req, res, next) => {
   const name = req.body.name;
@@ -12,7 +12,7 @@ const login = async (req, res, next) => {
     if (!loginUser) {
       return res.status(404).json({ message: "Invalid email or password" });
     }
-    const isMatch = bcrypt.compare(password, loginUser.password);
+    const isMatch = await bcrypt.compare(password, loginUser.password);
     if (!isMatch) {
       return res.status(404).json({ message: "Invalid email or password" });
     }

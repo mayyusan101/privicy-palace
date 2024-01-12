@@ -1,0 +1,188 @@
+:root{
+  --primary: #fff;
+  --bg-color: rgb(5, 53, 61);
+  --bg-envelope-color: #f5edd1;
+  --envelope-tab: #ecdeb8;
+  --envelope-cover: #e6cfa7;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --txt-color: #444;
+  --heart-color: rgb(252, 8, 231);
+}
+
+.container {
+  display: grid;
+  place-items: center;
+}
+.container > .envelope-wrapper {
+  background: var(--bg-envelope-color);
+}
+.envelope-wrapper > .envelope {
+  position: relative;
+  width: 150px;
+  height: 100px;
+  /* overflow: hidden; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.envelope-wrapper > .envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  border-top: 50px solid var(--envelope-tab);
+  border-right: 75px solid transparent;
+  border-left: 75px solid transparent;
+  transform-origin: top;
+  transition: all 0.5s ease-in-out 0.7s;
+}
+.envelope-wrapper > .envelope::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 0px;
+  height: 0px;
+  border-top: 50px solid transparent;
+  border-right: 75px solid var(--envelope-cover);
+  border-bottom: 50px solid var(--envelope-cover);
+  border-left: 75px solid var(--envelope-cover);
+}
+.flap > .envelope:before {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+.envelope > .letter {
+  position: absolute;
+  z-index: 12;
+  /* right: 10%; */
+  bottom: 0;
+  width: 300px;
+  height: 200px;
+  background-color: rgb(235, 235, 235);
+  color: white;
+  text-align: center;
+  transition: all 1s ease-in-out;
+  box-shadow: 0 0 5px var(--shadow-color);
+  padding: 10px 5px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.4);
+}
+
+.flap > .envelope > .letter {
+  bottom: 50px;
+  animation: openLetterAnimation 8s forwards;
+  transition-delay: 1.2s;
+  transform-origin: center;
+  animation-delay: 1.2s;
+  overflow: hidden;
+  overflow-y: auto;
+  z-index: 10;
+  /* transform: translate(50px, 10px); */
+}
+
+.envelope > .letter > .text {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: var(--txt-color);
+  text-align: left;
+  font-size: 10px;
+  overflow: hidden;
+}
+
+
+.flap > .envelope > .letter > .text {
+  font-size: 14px;
+}
+.flap > .heart {
+  transform: rotate(90deg);
+  transition-delay: 0.4s;
+}
+
+@keyframes openLetterAnimation {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.5);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  50% {
+    transform: translateY(-300px) translateX(-80) scale(0.6);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  75% {
+    transform: translateY(-100px) translateX(80px) scale(0.8);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    transform: translateY(10px) translateX(80px) scale(1);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+/* Copy to Clipboard */
+.inputBox {
+  position: relative;
+  width: 100%;
+  height: auto;
+  /* background-color: #444; */
+}
+
+
+.inputBox > .password {
+  width: 300px;
+  background: transparent;
+  height: auto;
+  padding: 0 5px;
+  padding-right: 20px;
+  font-size: 14px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  color: #333;
+  box-shadow: 0px -0.5px 2px rgba(255, 255, 255, 1),
+      inset 0px 4px 10px rgba(0, 0, 0, 0.05),
+      inset 0px -4px 10px rgba(255, 255, 255, 1),
+      0px 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+
+.copy {
+  position: absolute;
+  top: 2px;
+  left: 240px;
+  cursor: pointer;
+  /* opacity: 0.2; */
+}
+
+.copy:hover {
+  opacity: 1;
+}
+
+
+/* .heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  background: var(--heart-color);
+  z-index: 4;
+  transform: translate(-50%, -20%) rotate(45deg);
+  transition: transform 0.5s ease-in-out 1s;
+  box-shadow: 0 1px 6px var(--shadow-color);
+  cursor: pointer;
+}
+.heart:before, 
+.heart:after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: var(--heart-color);
+  border-radius: 50%;
+}
+.heart:before {
+  top: -7.5px;
+}
+.heart:after {
+  right: 7.5px;
+} */
